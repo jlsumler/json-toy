@@ -41,10 +41,22 @@ func getJSON(url string) error {
 	mp := f.(map[string]interface{})
 	//fmt.Printf("%v\n", mp)
 	maps := mp["networks"].([]interface{})
+	// maps should be an array of maps
 	//fmt.Printf("%v\n", maps)
-	for _, m := range maps {
+
+	// for i, child := range children {
+	// 	fmt.Printf("idx: %d, value: %v\n", i, child.Data().(map[string]interface{}))
+	// 	for k := range child.Data().(map[string]interface{}) {
+	// 		fmt.Printf("    key: %s\n", k)
+	// 	}
+	// }
+
+	for i, m := range maps {
 		m := m
-		fmt.Printf("%v\n", m)
+		fmt.Printf("idx: %d, value: %v\n", i, m.(map[string]interface{}))
+		for k := range m.(map[string]interface{}) {
+			fmt.Printf("    key: %s\n", k)
+		}
 	}
 	return nil
 }
